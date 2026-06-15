@@ -1,0 +1,48 @@
+/* Ulpan brand tokens — shared by Aktuali + מגזין הבית (Magazine).
+   Source of truth: app/globals.css in both products (identical palette). */
+:root {
+  /* Core trio (the "aleph/bet/gimmel" colours) */
+  --ub-teal:        #00B0C6;   /* primary  (aleph) */
+  --ub-gold:        #FFC60B;   /* secondary (bet)  */
+  --ub-coral:       #F0586D;   /* accent   (gimmel) */
+  --ub-ink:         #000000;   /* primary text + logo solids */
+
+  /* Extended palette */
+  --ub-teal-deep:   #014550;   /* highlights */
+  --ub-teal-mist:   #B2D9D8;   /* soft teal callout */
+  --ub-coral-dark:  #E36A46;   /* deeper coral */
+  --ub-coral-tint:  #FFC9B1;   /* peachy fill */
+  --ub-gold-deep:   #F4B609;   /* poster gold */
+  --ub-orchid:      #CEA4CC;   /* rare accent */
+  --ub-leaf:        #1A9461;   /* rare accent */
+
+  /* Surfaces — warm cream, NOT plain white */
+  --ub-cream:       #F6EEE4;   /* default page surface */
+  --ub-cream-soft:  #F8F1E7;
+  --ub-cream-pale:  #FFFDFA;   /* card surface */
+  --ub-cream-warm:  #FFFBEE;
+  --ub-sand:        #F2E1CE;   /* kraft-paper tone */
+  --ub-sand-deep:   #F1DDC8;
+  --ub-white:       #FFFFFF;
+
+  /* Ink scale */
+  --ub-ink-soft:    #2B2B2B;
+  --ub-ink-muted:   #5A5A5A;
+  --ub-ink-faint:   #8A8A8A;
+  --ub-rule:        #DDD0D1;   /* hairlines */
+  --ub-rule-soft:   #ECE4D8;
+}
+
+/* Semantic roles (how the tokens are used in-app) */
+:root {
+  --bg: var(--ub-cream);          --bg-card: var(--ub-cream-pale);  --bg-inverse: var(--ub-ink);
+  --fg: var(--ub-ink-soft);       --fg-muted: var(--ub-ink-muted);  --fg-faint: var(--ub-ink-faint);
+  --primary: var(--ub-teal);      --secondary: var(--ub-gold);      --accent: var(--ub-coral);
+  --secondary-fg: var(--ub-ink);  /* gold needs dark text for AA */
+}
+
+/* Fonts (custom webfonts in each product's /public/fonts):
+   - "Frank Ruhl Ulpan"  → serif DISPLAY / headlines (classic Hebrew serif).  Google equiv: Frank Ruhl Libre
+   - "Open Sans Hebrew"  → body / UI (sans).                                  Google equiv: Open Sans (Hebrew subset)
+   - "Droid Serif Ulpan" → secondary serif.                                   Google equiv: Droid/Noto Serif
+   Hebrew is RTL; on-screen Hebrew carries niqqud (vowel points) — pick fonts that render niqqud cleanly. */
