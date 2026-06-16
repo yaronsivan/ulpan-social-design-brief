@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Magazine Issue Teaser (4:5)" description="The 'new issue out now' promo. Editorial masthead (גיליון N · month) + huge theme word (HE+EN) + framed cover-image reveal + editorial hook + CTA. Magazine register: cream-warm ground, teal-deep + gold, serif-forward, no scrim. Story 9:16 uses the same composition at 1080×1920." -->
+<helmet>
+  <script src="./ds-base.js"></script>
+</helmet>
+<div ref="{{ rootRef }}" style="position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--ub-cream-warm);font-family:var(--font-body);direction:rtl;display:flex;flex-direction:column;padding:72px 80px 64px">
+
+  <!-- masthead: issue label (LTR, left) + brand wordmark (right) -->
+  <div style="display:flex;align-items:baseline;justify-content:space-between">
+    <span dir="ltr" style="font-size:24px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--ub-teal-deep);white-space:nowrap">{{ issueLabel }}</span>
+    <span style="font-family:var(--font-display);font-size:40px;font-weight:700;color:var(--ub-teal-deep)">{{ brandHe }}</span>
+  </div>
+  <div style="height:1.5px;background:var(--ub-teal-deep);opacity:0.28;margin-top:22px"></div>
+
+  <!-- center block -->
+  <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:34px">
+
+    <span dir="ltr" style="font-size:22px;font-weight:700;letter-spacing:0.24em;text-transform:uppercase;color:var(--ub-gold-deep);white-space:nowrap">{{ eyebrow }}</span>
+
+    <div style="display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:-6px">
+      <h1 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:152px;line-height:0.98;color:var(--ub-teal-deep)">{{ themeHe }}</h1>
+      <span dir="ltr" style="font-family:var(--font-serif);font-style:italic;font-size:54px;color:var(--ub-ink-muted)">{{ themeEn }}</span>
+    </div>
+
+    <!-- framed cover reveal: magazine-on-the-table feel -->
+    <div style="margin-top:6px;padding:16px;background:var(--ub-white);border-radius:18px;box-shadow:var(--shadow-lg)">
+      <div style="position:relative;width:438px;height:560px;border-radius:10px;overflow:hidden;background:radial-gradient(120% 90% at 60% 25%, #8aa6ad 0%, #5d7e86 46%, #3a565e 100%)">
+        <div style="position:absolute;inset:0;text-align:center;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.34);font-size:22px;letter-spacing:0.18em;text-transform:uppercase;pointer-events:none">cover image</div>
+        <img src="{{ photoUrl }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
+      </div>
+    </div>
+
+    <p dir="ltr" style="margin:8px 0 0;max-width:760px;font-family:var(--font-serif);font-style:italic;font-size:42px;line-height:1.28;color:var(--ub-ink-soft);text-wrap:balance">{{ hook }}</p>
+
+    <!-- CTA pill -->
+    <div style="display:inline-flex;align-items:center;gap:16px;padding:22px 48px;border-radius:var(--r-pill);background:var(--ub-teal-deep);box-shadow:var(--shadow-md);margin-top:8px">
+      <span style="font-family:var(--font-display);font-size:40px;font-weight:500;color:var(--ub-cream-pale)">{{ ctaHe }}</span>
+      <span dir="ltr" style="font-size:30px;font-weight:700;color:rgba(255,253,250,0.78)">{{ ctaEn }}</span>
+    </div>
+  </div>
+
+  <!-- footer: handle (left) + brand lockup (right). No school tagline. -->
+  <div style="display:flex;align-items:center;justify-content:space-between;padding-top:26px;border-top:1.5px solid var(--ub-rule)">
+    <span dir="ltr" style="font-size:24px;font-weight:500;color:var(--ub-ink-faint)">{{ handle }}</span>
+    <span style="display:inline-flex;align-items:center;gap:14px">
+      <span style="font-family:var(--font-display);font-weight:700;font-size:34px;color:var(--ub-teal-deep)">{{ brandHe }}</span>
+      <img src="../../assets/logos/aleph-icon-color.png" alt="" style="width:48px;height:auto;display:block" />
+    </span>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: { &quot;width&quot;: 1080, &quot;height&quot;: 1350 },
+  &quot;format&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;4:5&quot;,&quot;9:16&quot;], &quot;default&quot;: &quot;4:5&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;issueLabel&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Issue 07 · June 2026&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;eyebrow&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;The new issue · out now&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;themeHe&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;מַיִם&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;themeEn&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Water&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;hook&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Six levels of Hebrew on one of Israel's deepest symbols — articles, audio, games.&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;ctaHe&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;קראו את הגיליון&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;ctaEn&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Read issue 07&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;photoUrl&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;handle&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;@ulpan.magazine&quot;, &quot;tsType&quot;: &quot;string&quot; }
+}">
+class Component extends DCLogic {
+  constructor(props) { super(props); this.rootRef = React.createRef(); }
+  applyFormat() {
+    const el = this.rootRef.current;
+    if (el) el.style.height = (this.props.format === '9:16') ? '1920px' : '1350px';
+  }
+  componentDidMount() { this.applyFormat(); }
+  componentDidUpdate() { this.applyFormat(); }
+  renderVals() {
+    const p = this.props;
+    return {
+      rootRef: this.rootRef,
+      issueLabel: p.issueLabel ?? 'Issue 07 \u00b7 June 2026',
+      eyebrow: p.eyebrow ?? 'The new issue \u00b7 out now',
+      themeHe: p.themeHe ?? '\u05DE\u05B7\u05D9\u05B4\u05DD',
+      themeEn: p.themeEn ?? 'Water',
+      hook: p.hook ?? "Six levels of Hebrew on one of Israel's deepest symbols \u2014 articles, audio, games.",
+      ctaHe: p.ctaHe ?? '\u05E7\u05E8\u05D0\u05D5 \u05D0\u05EA \u05D4\u05D2\u05D9\u05DC\u05D9\u05D5\u05DF',
+      ctaEn: p.ctaEn ?? 'Read issue 07',
+      photoUrl: p.photoUrl || '',
+      handle: p.handle ?? '@ulpan.magazine',
+      brandHe: '\u05DE\u05D2\u05D6\u05D9\u05DF \u05D4\u05D1\u05D9\u05EA',
+    };
+  }
+}
+</script>
+</body>
+</html>

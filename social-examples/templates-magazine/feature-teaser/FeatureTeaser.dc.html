@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Feature Long-Read Teaser (4:5)" description="A single feature's hero promo: full-bleed photo + warm scrim, section kicker, title HE+EN, evocative pull-line, level chip, 'read the full feature' CTA. Magazine register (teal-deep + gold accents on photo). Story 9:16 uses the same composition at 1080×1920." -->
+<helmet>
+  <script src="./ds-base.js"></script>
+</helmet>
+<div ref="{{ rootRef }}" style="position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--ub-ink);font-family:var(--font-body);direction:rtl">
+
+  <!-- photo layer -->
+  <div style="position:absolute;inset:0;background:radial-gradient(120% 90% at 64% 22%, #5e7b80 0%, #3c5158 48%, #1f2c30 100%)"></div>
+  <div style="position:absolute;inset:0;text-align:center;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.26);font-size:24px;letter-spacing:0.18em;text-transform:uppercase;pointer-events:none">feature photo</div>
+  <img src="{{ photoUrl }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
+
+  <!-- warm teal-deep scrim, bottom-up -->
+  <div style="position:absolute;left:0;right:0;bottom:0;height:80%;background:linear-gradient(to top, rgba(1,40,46,0.92) 0%, rgba(1,40,46,0.7) 34%, rgba(1,40,46,0) 100%)"></div>
+
+  <!-- top masthead over photo -->
+  <div style="position:absolute;top:60px;left:72px;right:72px;display:flex;align-items:flex-start;justify-content:space-between">
+    <div style="display:flex;align-items:center;gap:16px">
+      {{ levelDot }}
+      <span style="display:inline-flex;flex-direction:column;line-height:1.12">
+        <span style="font-family:var(--font-display);font-size:26px;font-weight:500;color:var(--ub-cream-pale)">{{ levelHe }}</span>
+        <span dir="ltr" style="font-size:14px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,253,250,0.7)">Level {{ level }}</span>
+      </span>
+    </div>
+    <span style="font-family:var(--font-display);font-size:34px;font-weight:700;color:var(--ub-cream-pale)">{{ brandHe }}</span>
+  </div>
+
+  <!-- bottom content -->
+  <div style="position:absolute;left:72px;right:72px;bottom:64px;display:flex;flex-direction:column;gap:26px">
+    <span dir="ltr" style="font-size:22px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--ub-gold);white-space:nowrap">{{ kicker }}</span>
+    <h1 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:92px;line-height:1.04;color:var(--ub-cream-pale);text-wrap:balance">{{ titleHe }}</h1>
+    <span dir="ltr" style="font-family:var(--font-serif);font-style:italic;font-size:46px;line-height:1.2;color:rgba(255,253,250,0.88)">{{ titleEn }}</span>
+    <p dir="ltr" style="margin:6px 0 0;max-width:840px;font-family:var(--font-serif);font-style:italic;font-size:38px;line-height:1.34;color:rgba(255,253,250,0.78);text-wrap:pretty">{{ pullLine }}</p>
+
+    <div style="display:flex;align-items:center;gap:24px;margin-top:14px;padding-top:30px;border-top:1.5px solid rgba(255,253,250,0.22)">
+      <div style="display:inline-flex;align-items:center;gap:14px;padding:18px 40px;border-radius:var(--r-pill);background:var(--ub-gold);box-shadow:var(--shadow-md)">
+        <span style="font-family:var(--font-display);font-size:34px;font-weight:500;color:var(--ub-ink)">{{ ctaHe }}</span>
+      </div>
+      <span dir="ltr" style="margin-right:auto;font-size:24px;font-weight:500;color:rgba(255,253,250,0.74)">{{ handle }}</span>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: { &quot;width&quot;: 1080, &quot;height&quot;: 1350 },
+  &quot;format&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;4:5&quot;,&quot;9:16&quot;], &quot;default&quot;: &quot;4:5&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;level&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;A0&quot;,&quot;A1&quot;,&quot;A2&quot;,&quot;B1&quot;,&quot;B2&quot;,&quot;C1&quot;], &quot;default&quot;: &quot;B1&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;kicker&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Cover story · Issue 07&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;titleHe&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;כְּשֶׁהַכִּנֶּרֶת יוֹרֶדֶת&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;titleEn&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;When the Kinneret drops&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;pullLine&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Every summer the country watches one number — and holds its breath.&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;ctaHe&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;קראו את הכתבה&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;photoUrl&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;handle&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;@ulpan.magazine&quot;, &quot;tsType&quot;: &quot;string&quot; }
+}">
+class Component extends DCLogic {
+  constructor(props) { super(props); this.rootRef = React.createRef(); }
+  applyFormat() {
+    const el = this.rootRef.current;
+    if (el) el.style.height = (this.props.format === '9:16') ? '1920px' : '1350px';
+  }
+  componentDidMount() { this.applyFormat(); }
+  componentDidUpdate() { this.applyFormat(); }
+  renderVals() {
+    const p = this.props;
+    const CEFR = {
+      A0:{c:'#1A9461',n:0}, A1:{c:'#54A742',n:1}, A2:{c:'#9FB52E',n:2},
+      B1:{c:'#FFC60B',n:3}, B2:{c:'#F2913B',n:4}, C1:{c:'#F0586D',n:5},
+    };
+    const level = p.level || 'B1';
+    const m = CEFR[level] || CEFR.B1;
+    const levelDot = React.createElement('span', { style:{
+      display:'inline-flex', alignItems:'center', justifyContent:'center',
+      width:58, height:58, borderRadius:'50%', background:m.c, color:'#fff',
+      fontWeight:700, fontSize:24, boxShadow:'0 2px 10px rgba(0,0,0,0.35)'
+    } }, level);
+    return {
+      rootRef: this.rootRef,
+      level, levelDot, levelHe: '\u05E8\u05B8\u05DE\u05B8\u05D4 ' + m.n,
+      kicker: p.kicker ?? 'Cover story \u00b7 Issue 07',
+      titleHe: p.titleHe ?? '\u05DB\u05B0\u05BC\u05E9\u05B6\u05D4\u05B7\u05DB\u05B4\u05BC\u05E0\u05B6\u05E8\u05B6\u05EA \u05D9\u05D5\u05B9\u05E8\u05B6\u05D3\u05B6\u05EA',
+      titleEn: p.titleEn ?? 'When the Kinneret drops',
+      pullLine: p.pullLine ?? 'Every summer the country watches one number \u2014 and holds its breath.',
+      ctaHe: p.ctaHe ?? '\u05E7\u05E8\u05D0\u05D5 \u05D0\u05EA \u05D4\u05DB\u05EA\u05D1\u05D4',
+      photoUrl: p.photoUrl || '',
+      handle: p.handle ?? '@ulpan.magazine',
+      brandHe: '\u05DE\u05D2\u05D6\u05D9\u05DF \u05D4\u05D1\u05D9\u05EA',
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Games Teaser (4:5)" description="מִשְׂחָקִים. 'Play this issue's games' promo: a Wordle-style puzzle teaser (Hebrew letter tiles with guess states) + the issue's game line-up (Wordle / Memory / Anagram) + CTA. Magazine register on cream-warm, teal-deep + gold." -->
+<helmet>
+  <script src="./ds-base.js"></script>
+</helmet>
+<div style="position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--ub-cream-warm);font-family:var(--font-body);direction:rtl;display:flex;flex-direction:column;padding:64px 80px 56px">
+
+  <div style="display:flex;align-items:baseline;justify-content:space-between">
+    <span dir="ltr" style="font-size:22px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--ub-gold-deep);white-space:nowrap">{{ kicker }}</span>
+    <span style="font-family:var(--font-display);font-size:36px;font-weight:700;color:var(--ub-teal-deep)">{{ brandHe }}</span>
+  </div>
+  <div style="height:1.5px;background:var(--ub-teal-deep);opacity:0.28;margin-top:20px"></div>
+
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:48px">
+
+    <div style="display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center">
+      <h1 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:84px;line-height:1.2;color:var(--ub-teal-deep);white-space:nowrap">{{ titleHe }}</h1>
+      <span dir="ltr" style="font-family:var(--font-serif);font-style:italic;font-size:42px;color:var(--ub-ink-muted)">{{ titleEn }}</span>
+    </div>
+
+    <!-- Wordle teaser board -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:22px">
+      <span dir="ltr" style="font-size:20px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--ub-ink-faint)">{{ wordleLabel }}</span>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;gap:12px;direction:rtl">
+          <span style="display:inline-flex;align-items:center;justify-content:center;width:104px;height:104px;border-radius:12px;background:var(--ub-teal-deep);font-family:var(--font-display);font-weight:700;font-size:58px;color:var(--ub-cream-pale)">מ</span>
+          <span style="display:inline-flex;align-items:center;justify-content:center;width:104px;height:104px;border-radius:12px;background:var(--ub-gold-deep);font-family:var(--font-display);font-weight:700;font-size:58px;color:var(--ub-ink)">ע</span>
+          <span style="display:inline-flex;align-items:center;justify-content:center;width:104px;height:104px;border-radius:12px;background:#cfc4b4;font-family:var(--font-display);font-weight:700;font-size:58px;color:var(--ub-white)">ר</span>
+          <span style="display:inline-flex;align-items:center;justify-content:center;width:104px;height:104px;border-radius:12px;background:#cfc4b4;font-family:var(--font-display);font-weight:700;font-size:58px;color:var(--ub-white)">ב</span>
+          <span style="display:inline-flex;align-items:center;justify-content:center;width:104px;height:104px;border-radius:12px;background:var(--ub-teal-deep);font-family:var(--font-display);font-weight:700;font-size:58px;color:var(--ub-cream-pale)">ן</span>
+        </div>
+        <div style="display:flex;gap:12px;direction:rtl">
+          <span style="width:104px;height:104px;border-radius:12px;background:var(--ub-cream-pale);border:2px solid var(--ub-rule)"></span>
+          <span style="width:104px;height:104px;border-radius:12px;background:var(--ub-cream-pale);border:2px solid var(--ub-rule)"></span>
+          <span style="width:104px;height:104px;border-radius:12px;background:var(--ub-cream-pale);border:2px solid var(--ub-rule)"></span>
+          <span style="width:104px;height:104px;border-radius:12px;background:var(--ub-cream-pale);border:2px solid var(--ub-rule)"></span>
+          <span style="width:104px;height:104px;border-radius:12px;background:var(--ub-cream-pale);border:2px solid var(--ub-rule)"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- game line-up -->
+    <div style="display:flex;gap:20px;justify-content:center">
+      <sc-for list="{{ games }}" as="g" hint-placeholder-count="3">
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;background:var(--ub-sand);border-radius:var(--r-lg);padding:28px 20px;box-shadow:var(--shadow-card)">
+          <span style="font-family:var(--font-display);font-size:40px;font-weight:700;color:var(--ub-teal-deep)">{{ g.he }}</span>
+          <span dir="ltr" style="font-size:22px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--ub-ink-faint)">{{ g.en }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="display:flex;align-items:center;justify-content:space-between;padding-top:24px;border-top:1.5px solid var(--ub-rule)">
+    <span dir="ltr" style="font-size:24px;font-weight:500;color:var(--ub-ink-faint)">{{ handle }}</span>
+    <div style="display:inline-flex;align-items:center;gap:14px;padding:18px 40px;border-radius:var(--r-pill);background:var(--ub-teal-deep);box-shadow:var(--shadow-md)">
+      <span style="font-family:var(--font-display);font-size:34px;font-weight:500;color:var(--ub-cream-pale)">{{ ctaHe }}</span>
+      <span dir="ltr" style="font-size:24px;font-weight:700;color:rgba(255,253,250,0.78)">{{ ctaEn }}</span>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: { &quot;width&quot;: 1080, &quot;height&quot;: 1350 },
+  &quot;kicker&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Games · Issue 07&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;titleHe&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;מִשְׂחֲקֵי הַגִּלָּיוֹן&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;titleEn&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;This issue's games&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;wordleLabel&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Word of the week&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;ctaHe&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;שַׁחֲקוּ עַכְשָׁיו&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;ctaEn&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Play now&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;handle&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;@ulpan.magazine&quot;, &quot;tsType&quot;: &quot;string&quot; }
+}">
+class Component extends DCLogic {
+  renderVals() {
+    const p = this.props;
+    const games = p.games ?? [
+      { he: '\u05D5\u05D5\u05B9\u05E8\u05B0\u05D3\u05B0\u05DC', en: 'Wordle' },
+      { he: '\u05D6\u05B4\u05DB\u05B8\u05BC\u05E8\u05D5\u05B9\u05DF', en: 'Memory' },
+      { he: '\u05D0\u05B2\u05E0\u05B7\u05D2\u05B0\u05E8\u05B8\u05DE\u05B8\u05D4', en: 'Anagram' },
+    ];
+    return {
+      games,
+      kicker: p.kicker ?? 'Games \u00b7 Issue 07',
+      titleHe: p.titleHe ?? '\u05DE\u05B4\u05E9\u05B0\u05E2\u05B2\u05E7\u05B5\u05D9 \u05D4\u05B7\u05D2\u05B4\u05BC\u05DC\u05B8\u05BC\u05D9\u05D5\u05B9\u05DF',
+      titleEn: p.titleEn ?? "This issue's games",
+      wordleLabel: p.wordleLabel ?? 'Word of the week',
+      ctaHe: p.ctaHe ?? '\u05E9\u05B7\u05D7\u05B2\u05E7\u05D5 \u05E2\u05B7\u05DB\u05B0\u05E9\u05B8\u05D9\u05D5',
+      ctaEn: p.ctaEn ?? 'Play now',
+      handle: p.handle ?? '@ulpan.magazine',
+      brandHe: '\u05DE\u05D2\u05D6\u05D9\u05DF \u05D4\u05D1\u05D9\u05EA',
+    };
+  }
+}
+</script>
+</body>
+</html>

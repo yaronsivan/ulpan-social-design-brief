@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="From the Kitchen — Recipe Card (4:5)" description="מֵהַמִּטְבָּח. Warm, procedural recipe promo: framed dish photo, dish title HE+EN, level chip, a short ingredients preview (HE + EN gloss rows), 'full recipe' CTA. Magazine register on cream-warm." -->
+<helmet>
+  <script src="./ds-base.js"></script>
+</helmet>
+<div style="position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--ub-cream-warm);font-family:var(--font-body);direction:rtl;display:flex;flex-direction:column;padding:64px 80px 56px">
+
+  <div style="display:flex;align-items:baseline;justify-content:space-between">
+    <span dir="ltr" style="font-size:22px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--ub-gold-deep);white-space:nowrap">{{ kicker }}</span>
+    <span style="font-family:var(--font-display);font-size:36px;font-weight:700;color:var(--ub-teal-deep)">{{ brandHe }}</span>
+  </div>
+  <div style="height:1.5px;background:var(--ub-teal-deep);opacity:0.28;margin-top:20px"></div>
+
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:34px">
+
+    <!-- framed dish photo -->
+    <div style="align-self:center;padding:14px;background:var(--ub-white);border-radius:18px;box-shadow:var(--shadow-lg)">
+      <div style="position:relative;width:600px;height:340px;border-radius:10px;overflow:hidden;background:radial-gradient(120% 120% at 50% 30%, #c79a5e 0%, #9b6f3e 52%, #5f4423 100%)">
+        <div style="position:absolute;inset:0;text-align:center;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.34);font-size:22px;letter-spacing:0.18em;text-transform:uppercase;pointer-events:none">dish photo</div>
+        <img src="{{ photoUrl }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
+      </div>
+    </div>
+
+    <!-- title + level -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:14px">
+      <h1 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:96px;line-height:1.0;color:var(--ub-teal-deep)">{{ dishHe }}</h1>
+      <span dir="ltr" style="font-family:var(--font-serif);font-style:italic;font-size:44px;color:var(--ub-ink-muted)">{{ dishEn }}</span>
+      <div style="margin-top:6px">{{ levelChip }}</div>
+    </div>
+
+    <!-- ingredients preview -->
+    <div style="background:var(--ub-sand);border-radius:var(--r-lg);padding:36px 44px;box-shadow:var(--shadow-card)">
+      <span dir="ltr" style="display:block;font-size:20px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--ub-teal-deep);margin-bottom:22px">{{ listLabel }}</span>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <sc-for list="{{ ingredients }}" as="ing" hint-placeholder-count="4">
+          <div style="display:flex;align-items:baseline;gap:18px">
+            <span style="flex-shrink:0;width:14px;height:14px;border-radius:50%;background:var(--ub-gold-deep);transform:translateY(-4px)"></span>
+            <span style="font-family:var(--font-display);font-size:42px;font-weight:500;color:var(--ub-ink-soft)">{{ ing.he }}</span>
+            <span dir="ltr" style="margin-right:auto;font-size:28px;font-style:italic;font-family:var(--font-serif);color:var(--ub-ink-faint)">{{ ing.en }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+
+  <!-- footer: CTA + handle -->
+  <div style="display:flex;align-items:center;justify-content:space-between;padding-top:24px;border-top:1.5px solid var(--ub-rule)">
+    <span dir="ltr" style="font-size:24px;font-weight:500;color:var(--ub-ink-faint)">{{ handle }}</span>
+    <div style="display:inline-flex;align-items:center;gap:14px;padding:18px 40px;border-radius:var(--r-pill);background:var(--ub-teal-deep);box-shadow:var(--shadow-md)">
+      <span style="font-family:var(--font-display);font-size:34px;font-weight:500;color:var(--ub-cream-pale)">{{ ctaHe }}</span>
+      <span dir="ltr" style="font-size:24px;font-weight:700;color:rgba(255,253,250,0.78)">{{ ctaEn }}</span>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: { &quot;width&quot;: 1080, &quot;height&quot;: 1350 },
+  &quot;level&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;A0&quot;,&quot;A1&quot;,&quot;A2&quot;,&quot;B1&quot;,&quot;B2&quot;,&quot;C1&quot;], &quot;default&quot;: &quot;A2&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;kicker&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;From the kitchen · Issue 07&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;dishHe&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;לִימוֹנָנָה&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;dishEn&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Limonana — mint lemonade&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;listLabel&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;What you'll need&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;ctaHe&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;המתכון המלא&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;ctaEn&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Full recipe&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;photoUrl&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;handle&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;@ulpan.magazine&quot;, &quot;tsType&quot;: &quot;string&quot; }
+}">
+class Component extends DCLogic {
+  renderVals() {
+    const p = this.props;
+    const CEFR = {
+      A0:{c:'#1A9461',n:0}, A1:{c:'#54A742',n:1}, A2:{c:'#9FB52E',n:2},
+      B1:{c:'#FFC60B',n:3}, B2:{c:'#F2913B',n:4}, C1:{c:'#F0586D',n:5},
+    };
+    const level = p.level || 'A2';
+    const m = CEFR[level] || CEFR.A2;
+    const levelChip = React.createElement('span', { style:{
+      display:'inline-flex', alignItems:'center', gap:13, padding:'10px 22px 10px 12px',
+      borderRadius:999, background:'var(--ub-cream-pale)', border:'1.5px solid var(--ub-rule)',
+      boxShadow:'var(--shadow-sm)'
+    } },
+      React.createElement('span', { style:{
+        display:'inline-flex', alignItems:'center', justifyContent:'center',
+        width:42, height:42, borderRadius:'50%', background:m.c, color:'#fff', fontWeight:700, fontSize:19
+      } }, level),
+      React.createElement('span', { style:{ fontFamily:'var(--font-display)', fontSize:26, fontWeight:500, color:'var(--ub-ink-soft)' } }, '\u05E8\u05B8\u05DE\u05B8\u05D4 ' + m.n)
+    );
+    const ingredients = p.ingredients ?? [
+      { he: '\u05DC\u05B4\u05D9\u05DE\u05D5\u05B9\u05E0\u05B4\u05D9\u05DD', en: 'lemons' },
+      { he: '\u05E2\u05B2\u05DC\u05B5\u05D9 \u05E0\u05B7\u05E2\u05B2\u05E0\u05B8\u05E2', en: 'mint leaves' },
+      { he: '\u05E1\u05BD\u05D5\u05BC\u05DB\u05B8\u05Bc\u05E8', en: 'sugar' },
+      { he: '\u05E7\u05B6\u05E8\u05B7\u05D7', en: 'ice' },
+    ];
+    return {
+      levelChip, ingredients,
+      kicker: p.kicker ?? 'From the kitchen \u00b7 Issue 07',
+      dishHe: p.dishHe ?? '\u05DC\u05B4\u05D9\u05DE\u05D5\u05B9\u05E0\u05B8\u05E0\u05B8\u05D4',
+      dishEn: p.dishEn ?? 'Limonana \u2014 mint lemonade',
+      listLabel: p.listLabel ?? "What you'll need",
+      ctaHe: p.ctaHe ?? '\u05D4\u05DE\u05EA\u05DB\u05D5\u05DF \u05D4\u05DE\u05DC\u05D0',
+      ctaEn: p.ctaEn ?? 'Full recipe',
+      photoUrl: p.photoUrl || '',
+      handle: p.handle ?? '@ulpan.magazine',
+      brandHe: '\u05DE\u05D2\u05D6\u05D9\u05DF \u05D4\u05D1\u05D9\u05EA',
+    };
+  }
+}
+</script>
+</body>
+</html>
