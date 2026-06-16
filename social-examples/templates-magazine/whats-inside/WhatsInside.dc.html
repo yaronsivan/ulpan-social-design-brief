@@ -16,7 +16,7 @@
 <div style="position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--ub-cream-warm);font-family:var(--font-body);direction:rtl;display:flex;flex-direction:column;padding:72px 80px 64px">
   <div style="display:flex;align-items:baseline;justify-content:space-between">
     <span dir="ltr" style="font-size:24px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--ub-teal-deep);white-space:nowrap">{{ issueLabel }}</span>
-    <span style="font-family:var(--font-display);font-size:40px;font-weight:700;color:var(--ub-teal-deep)">{{ brandHe }}</span>
+    <span style="font-family:var(--font-display);font-size:40px;font-weight:700;color:var(--ub-teal-deep);white-space:nowrap;flex-shrink:0">{{ brandHe }}</span>
   </div>
   <div style="height:1.5px;background:var(--ub-teal-deep);opacity:0.28;margin-top:22px"></div>
 
@@ -42,7 +42,7 @@
 <div style="position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--ub-cream-warm);font-family:var(--font-body);direction:rtl;display:flex;flex-direction:column;padding:72px 80px 64px">
   <div style="display:flex;align-items:baseline;justify-content:space-between">
     <span dir="ltr" style="font-size:22px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--ub-ink-faint);white-space:nowrap">{{ tocLabel }}</span>
-    <span style="font-family:var(--font-display);font-size:36px;font-weight:700;color:var(--ub-teal-deep)">{{ brandHe }}</span>
+    <span style="font-family:var(--font-display);font-size:36px;font-weight:700;color:var(--ub-teal-deep);white-space:nowrap;flex-shrink:0">{{ brandHe }}</span>
   </div>
   <div style="height:1.5px;background:var(--ub-teal-deep);opacity:0.28;margin-top:22px"></div>
 
@@ -68,7 +68,7 @@
 
   <div style="display:flex;align-items:center;justify-content:space-between;padding-top:26px;border-top:1.5px solid var(--ub-rule)">
     <span dir="ltr" style="font-size:24px;font-weight:500;color:var(--ub-ink-faint)">{{ handle }}</span>
-    <span style="font-family:var(--font-serif);font-style:italic;font-size:26px;color:var(--ub-ink-faint)">{{ themeEn }} \u00b7 {{ issueShort }}</span>
+    <span style="font-family:var(--font-serif);font-style:italic;font-size:26px;color:var(--ub-ink-faint)">{{ themeEn }} · {{ issueShort }}</span>
   </div>
 </div>
 </sc-if>

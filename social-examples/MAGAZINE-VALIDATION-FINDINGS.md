@@ -22,3 +22,9 @@ Renders: `renders/14`–`19`. Editorial register confirmed — clearly distinct 
 - feature-teaser, from-the-kitchen, games-teaser, editors-note: render perfectly with
   real data (real Kinneret photo+title; real Green Shakshuka + ingredients; Yaron's real
   photo in the editor's note). The `format` 4:5/9:16 toggle works.
+
+## RESOLVED 2026-06-16 (v3 export)
+All three fixed in Claude Design and re-validated:
+1. ✅ box-sizing reset added as `tokens/base.css` (`*,*::before,*::after{box-sizing:border-box}`) imported by styles.css — cards now render at exactly 1080×1350 with no injection.
+2. ✅ whats-inside footer uses a real `·` — renders "Water · Issue 07".
+3. ✅ issue-teaser shrunk (theme 152→116px, cover 438×560→372×472) — CTA + footer fit at 4:5.

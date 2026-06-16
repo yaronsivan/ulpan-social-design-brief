@@ -16,7 +16,7 @@
   <!-- masthead: issue label (LTR, left) + brand wordmark (right) -->
   <div style="display:flex;align-items:baseline;justify-content:space-between">
     <span dir="ltr" style="font-size:24px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--ub-teal-deep);white-space:nowrap">{{ issueLabel }}</span>
-    <span style="font-family:var(--font-display);font-size:40px;font-weight:700;color:var(--ub-teal-deep)">{{ brandHe }}</span>
+    <span style="font-family:var(--font-display);font-size:40px;font-weight:700;color:var(--ub-teal-deep);white-space:nowrap;flex-shrink:0">{{ brandHe }}</span>
   </div>
   <div style="height:1.5px;background:var(--ub-teal-deep);opacity:0.28;margin-top:22px"></div>
 
@@ -26,13 +26,13 @@
     <span dir="ltr" style="font-size:22px;font-weight:700;letter-spacing:0.24em;text-transform:uppercase;color:var(--ub-gold-deep);white-space:nowrap">{{ eyebrow }}</span>
 
     <div style="display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:-6px">
-      <h1 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:152px;line-height:0.98;color:var(--ub-teal-deep)">{{ themeHe }}</h1>
+      <h1 data-theme style="margin:0;font-family:var(--font-display);font-weight:700;font-size:116px;line-height:0.98;color:var(--ub-teal-deep)">{{ themeHe }}</h1>
       <span dir="ltr" style="font-family:var(--font-serif);font-style:italic;font-size:54px;color:var(--ub-ink-muted)">{{ themeEn }}</span>
     </div>
 
     <!-- framed cover reveal: magazine-on-the-table feel -->
     <div style="margin-top:6px;padding:16px;background:var(--ub-white);border-radius:18px;box-shadow:var(--shadow-lg)">
-      <div style="position:relative;width:438px;height:560px;border-radius:10px;overflow:hidden;background:radial-gradient(120% 90% at 60% 25%, #8aa6ad 0%, #5d7e86 46%, #3a565e 100%)">
+      <div data-cover style="position:relative;width:372px;height:472px;border-radius:10px;overflow:hidden;background:radial-gradient(120% 90% at 60% 25%, #8aa6ad 0%, #5d7e86 46%, #3a565e 100%)">
         <div style="position:absolute;inset:0;text-align:center;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.34);font-size:22px;letter-spacing:0.18em;text-transform:uppercase;pointer-events:none">cover image</div>
         <img src="{{ photoUrl }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
       </div>
@@ -74,7 +74,16 @@ class Component extends DCLogic {
   constructor(props) { super(props); this.rootRef = React.createRef(); }
   applyFormat() {
     const el = this.rootRef.current;
-    if (el) el.style.height = (this.props.format === '9:16') ? '1920px' : '1350px';
+    if (!el) return;
+    const wide = this.props.format === '9:16';
+    el.style.height = wide ? '1920px' : '1350px';
+    const theme = el.querySelector('[data-theme]');
+    const cover = el.querySelector('[data-cover]');
+    if (theme) theme.style.fontSize = wide ? '152px' : '116px';
+    if (cover) {
+      cover.style.width = wide ? '438px' : '372px';
+      cover.style.height = wide ? '560px' : '472px';
+    }
   }
   componentDidMount() { this.applyFormat(); }
   componentDidUpdate() { this.applyFormat(); }
