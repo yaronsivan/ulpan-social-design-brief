@@ -292,6 +292,38 @@ try:
 except Exception as e:
     print("FETCH FAILED:", e)
 
+# 13) Magazine ISSUE TEASER — distinct editorial style (warm surface, teal-deep lead,
+#     framed cover reveal, theme-forward). Real Water-issue data.
+try:
+    mw = json.load(open("/tmp/ds-export/mag_water.json", encoding="utf-8"))[0]
+    TEAL = "var(--ub-teal-deep)"
+    examples["13-magazine-issue-teaser"] = (
+        f"<div style='position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--ub-cream-warm);font-family:var(--font-body);direction:rtl;display:flex;flex-direction:column'>"
+        # masthead
+        f"<div style='display:flex;align-items:baseline;justify-content:space-between;padding:60px 72px 0'>"
+        f"<span style='font-family:var(--font-display);font-size:42px;font-weight:700;color:{TEAL}'>{MAG}</span>"
+        f"<span dir='ltr' style='font-size:22px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--fg-faint)'>Issue 0{mw['issue_number']} · June 2026</span></div>"
+        f"<div style='margin:22px 72px 0;height:2px;background:{TEAL};opacity:0.5'></div>"
+        # theme
+        f"<div style='display:flex;flex-direction:column;align-items:center;text-align:center;padding:30px 72px 0;gap:4px'>"
+        f"<span dir='ltr' style='font-size:20px;font-weight:700;letter-spacing:0.26em;text-transform:uppercase;color:var(--ub-gold-deep)'>The new issue · out now</span>"
+        f"<h1 style='margin:6px 0 0;font-family:var(--font-display);font-weight:700;font-size:128px;line-height:1;color:{TEAL}'>{mw['theme_he']}</h1>"
+        f"<span dir='ltr' style='font-family:var(--font-serif);font-style:italic;font-size:44px;color:var(--fg-muted)'>{mw['theme_en']}</span></div>"
+        # framed cover reveal
+        f"<div style='flex:1;display:flex;justify-content:center;align-items:center;padding:30px 72px'>"
+        f"<img src='{mw['cover_image_url']}' style='width:470px;height:588px;object-fit:cover;border-radius:var(--r-md);box-shadow:var(--shadow-lg);border:7px solid var(--ub-cream-pale)'></div>"
+        # hook + CTA
+        f"<div style='display:flex;flex-direction:column;align-items:center;text-align:center;gap:22px;padding:0 90px 8px'>"
+        f"<p dir='ltr' style='margin:0;font-family:var(--font-serif);font-style:italic;font-size:38px;line-height:1.3;color:var(--fg);text-wrap:pretty'>Six levels of Hebrew on one of Israel's deepest symbols — articles, audio, games.</p>"
+        f"<span style='display:inline-flex;align-items:center;gap:14px;padding:22px 48px;border-radius:999px;background:{TEAL};color:var(--ub-cream-pale);font-size:36px;font-weight:700;box-shadow:var(--shadow-md)'>קראו את הגיליון · Read issue 0{mw['issue_number']}</span></div>"
+        # footer
+        f"<div style='display:flex;align-items:center;gap:16px;padding:30px 72px 44px'>{icon(46)}"
+        f"<span style='font-family:var(--font-display);font-weight:700;font-size:30px;color:var(--fg)'>{MAG}</span>"
+        f"<span dir='ltr' style='margin-right:auto;font-size:20px;color:var(--fg-faint)'>@ulpan.magazine</span></div></div>")
+    print("teaser built; theme:", repr(mw['theme_he']))
+except Exception as e:
+    print("TEASER FAILED:", e)
+
 print("RAMAH=%r AKT=%r MAG=%r SLANG=%r" % (RAMAH, AKT, MAG, SLANG))
 print("CLIFF_HE=%r" % CLIFF_HE); print("ID_REAL=%r" % ID_REAL); print("WOD_K=%r EX_K=%r" % (WOD_K, EX_K))
 print("ra.hePre=%r ra.heHero=%r ra.hePost=%r" % (ra.get('hePre'), ra.get('heHero'), ra.get('hePost')))
