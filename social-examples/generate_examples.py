@@ -259,6 +259,39 @@ examples["08-carousel-interior-point"] = carousel_interior("point")
 examples["09-carousel-interior-idiom"] = carousel_interior("idiom")
 examples["10-carousel-interior-cta"]   = carousel_interior("cta")
 
+def cover(level, headline, subhead, photo):
+    color, n = CEFR[level]
+    return (f"<div style='position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--ub-ink);font-family:var(--font-body);direction:rtl'>"
+        f"<div style='position:absolute;inset:0;background:radial-gradient(120% 90% at 70% 18%, #6b5746 0%, #3a2f29 48%, #1c1714 100%)'></div>"
+        f"<img src='{photo}' style='position:absolute;inset:0;width:100%;height:100%;object-fit:cover'>"
+        f"<div style='position:absolute;left:0;right:0;bottom:0;height:74%;background:linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.55) 38%, rgba(0,0,0,0) 100%)'></div>"
+        f"<div style='position:absolute;top:64px;right:64px;display:flex;align-items:center;gap:16px'>{dot(60,25,color,level,'0 2px 10px rgba(0,0,0,0.35)')}"
+        f"<span style='display:inline-flex;flex-direction:column;line-height:1.12'>"
+        f"<span style='font-family:var(--font-display);font-size:28px;font-weight:500;color:var(--ub-cream-pale)'>{ramah(n)}</span>"
+        f"<span dir='ltr' style='font-size:15px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,253,250,0.7)'>Level {level}</span></span></div>"
+        f"<div style='position:absolute;left:72px;right:72px;bottom:72px;display:flex;flex-direction:column;gap:28px'>"
+        f"<h1 style='margin:0;font-family:var(--font-display);font-weight:700;font-size:96px;line-height:1.05;color:var(--ub-cream-pale);text-wrap:balance'>{headline}</h1>"
+        f"<p dir='ltr' style='margin:0;font-family:var(--font-serif);font-style:italic;font-size:46px;line-height:1.25;color:rgba(255,253,250,0.86);text-wrap:pretty'>{subhead}</p>"
+        f"<div style='display:flex;align-items:center;gap:18px;margin-top:14px;padding-top:30px;border-top:1.5px solid rgba(255,253,250,0.2)'>"
+        f"<img src='assets/logos/aleph-icon-color.png' style='width:56px;height:auto;display:block'>"
+        f"<span style='display:inline-flex;flex-direction:column;line-height:1.1'>"
+        f"<span style='font-family:var(--font-display);font-weight:700;font-size:36px;color:var(--ub-cream-pale)'>{AKT}</span>"
+        f"<span dir='ltr' style='font-size:16px;font-weight:500;letter-spacing:0.04em;color:rgba(255,253,250,0.7);margin-top:3px'>The daily paper in easy Hebrew</span></span></div></div></div>")
+
+# --- 2 more real articles: data fetched via curl (TLS-verified) into local JSON ---
+def fetch_article(path, level):
+    d = json.load(open(path, encoding="utf-8"))[0]
+    lvl = next(l for l in d["akt_article_levels"] if l["level"] == level)
+    return d.get("photo_url") or "", lvl["title"], lvl.get("title_en") or ""
+try:
+    p1, h1, s1 = fetch_article("/tmp/ds-export/a_outage.json", "A2")
+    examples["11-cover-outage-A2"] = cover("A2", h1, s1, p1)
+    p2, h2, s2 = fetch_article("/tmp/ds-export/a_worldcup.json", "C1")
+    examples["12-cover-worldcup-C1"] = cover("C1", h2, s2, p2)
+    print("fetched 11/12:", repr(h1), "|", repr(h2))
+except Exception as e:
+    print("FETCH FAILED:", e)
+
 print("RAMAH=%r AKT=%r MAG=%r SLANG=%r" % (RAMAH, AKT, MAG, SLANG))
 print("CLIFF_HE=%r" % CLIFF_HE); print("ID_REAL=%r" % ID_REAL); print("WOD_K=%r EX_K=%r" % (WOD_K, EX_K))
 print("ra.hePre=%r ra.heHero=%r ra.hePost=%r" % (ra.get('hePre'), ra.get('heHero'), ra.get('hePost')))
