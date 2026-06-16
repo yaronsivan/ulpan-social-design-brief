@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Word of the Day (1:1)" description="News vocab micro-card. Zones: label → word (XL, ≤6 chars) → translit + English gloss → Hebrew example (≤50 chars) → English example. CEFR-dot badge." -->
+<helmet>
+  <script src="./ds-base.js"></script>
+</helmet>
+<div style="position:relative;width:1080px;height:1080px;overflow:hidden;background:var(--ub-cream);font-family:var(--font-body);direction:rtl;display:flex;flex-direction:column">
+
+  <!-- top accent rule -->
+  <div style="height:12px;background:linear-gradient(to left, var(--ub-teal) 0 33.3%, var(--ub-gold) 33.3% 66.6%, var(--ub-coral) 66.6% 100%)"></div>
+
+  <!-- header: label + level dot -->
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:52px 64px 0">
+    <span style="display:inline-flex;flex-direction:column;line-height:1.1">
+      <span style="font-family:var(--font-display);font-size:34px;font-weight:500;color:var(--fg)">{{ kicker }}</span>
+      <span dir="ltr" style="font-size:16px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--ub-coral);margin-top:4px">{{ kickerEn }}</span>
+    </span>
+    <span style="display:inline-flex;align-items:center;gap:14px">
+      {{ levelDot }}
+    </span>
+  </div>
+
+  <!-- center: word + gloss -->
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:24px 72px;gap:26px">
+    <h1 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:170px;line-height:1;color:var(--ub-teal-deep)">{{ word }}</h1>
+    <span dir="ltr" style="font-family:var(--font-body);font-style:italic;font-size:42px;color:var(--fg-faint)">{{ translit }}</span>
+    <span dir="ltr" style="font-family:var(--font-serif);font-style:italic;font-size:50px;color:var(--fg)">{{ gloss }}</span>
+  </div>
+
+  <!-- example block -->
+  <div style="margin:0 64px;background:var(--ub-cream-pale);border:1.5px solid var(--ub-rule-soft);border-radius:var(--r-lg);padding:40px 48px;box-shadow:var(--shadow-card);display:flex;flex-direction:column;gap:14px;align-items:center;text-align:center">
+    <span style="font-family:var(--font-display);font-size:48px;font-weight:500;line-height:1.22;color:var(--fg);text-wrap:balance">{{ exampleHe }}</span>
+    <span dir="ltr" style="font-family:var(--font-serif);font-style:italic;font-size:34px;color:var(--fg-muted);text-wrap:pretty">{{ exampleEn }}</span>
+  </div>
+
+  <!-- footer lockup -->
+  <div style="display:flex;align-items:center;gap:16px;padding:40px 64px 48px">
+    <img src="../../assets/logos/aleph-icon-color.png" alt="" style="width:48px;height:auto" />
+    <span style="font-family:var(--font-display);font-weight:700;font-size:32px;color:var(--fg)">{{ brandHe }}</span>
+    <span dir="ltr" style="margin-right:auto;font-size:20px;color:var(--fg-faint)">{{ handle }}</span>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: { &quot;width&quot;: 1080, &quot;height&quot;: 1080 },
+  &quot;level&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;A0&quot;,&quot;A1&quot;,&quot;A2&quot;,&quot;B1&quot;,&quot;B2&quot;,&quot;C1&quot;], &quot;default&quot;: &quot;B1&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;word&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;קָפוּא&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;translit&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;ka·fúa&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;gloss&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;frozen; at a standstill&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;exampleHe&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;הַשּׁוּק קָפוּא — כִּמְעַט אַף אֶחָד לֹא קוֹנֶה.&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;exampleEn&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;The market is frozen — almost no one is buying.&quot;, &quot;tsType&quot;: &quot;string&quot; }
+}">
+class Component extends DCLogic {
+  renderVals() {
+    const p = this.props;
+    const CEFR = { A0:{c:'#1A9461'},A1:{c:'#54A742'},A2:{c:'#9FB52E'},B1:{c:'#FFC60B'},B2:{c:'#F2913B'},C1:{c:'#F0586D'} };
+    const level = p.level || 'B1';
+    const m = CEFR[level] || CEFR.B1;
+    const levelDot = React.createElement('span', { style: {
+      display:'inline-flex', alignItems:'center', justifyContent:'center',
+      width:56, height:56, borderRadius:'50%', background:m.c, color:'#fff',
+      fontWeight:700, fontSize:23
+    } }, level);
+    return {
+      level, levelDot,
+      kicker: p.kicker ?? '\u05DE\u05B4\u05DC\u05B7\u05BC\u05EA \u05D4\u05B7\u05D9\u05BC\u05D5\u05B9\u05DD',
+      kickerEn: 'Word of the day',
+      word: p.word ?? '\u05E7\u05B8\u05E4\u05D5\u05BC\u05D0',
+      translit: p.translit ?? 'ka\u00b7f\u00faa',
+      gloss: p.gloss ?? 'frozen; at a standstill',
+      exampleHe: p.exampleHe ?? '\u05D4\u05B7\u05E9\u05BC\u05D5\u05BC\u05E7 \u05E7\u05B8\u05E4\u05D5\u05BC\u05D0 \u2014 \u05DB\u05B4\u05DE\u05B0\u05E2\u05B7\u05D8 \u05D0\u05B7\u05E3 \u05D0\u05B6\u05D7\u05B8\u05D3 \u05DC\u05B9\u05D0 \u05E7\u05D5\u05B9\u05E0\u05B6\u05D4.',
+      exampleEn: p.exampleEn ?? 'The market is frozen \u2014 almost no one is buying.',
+      brandHe: '\u05D0\u05E7\u05D8\u05D5\u05D0\u05DC\u05D9', handle: p.handle ?? '@aktuali',
+    };
+  }
+}
+</script>
+</body>
+</html>

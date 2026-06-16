@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Expression of the Day (1:1)" description="Magazine idiom micro-card. Zones: register pill → idiom (XL) → translit → literal (muted) → real meaning (bold) → mini example footer." -->
+<helmet>
+  <script src="./ds-base.js"></script>
+</helmet>
+<div style="position:relative;width:1080px;height:1080px;overflow:hidden;background:var(--ub-cream);font-family:var(--font-body);direction:rtl;display:flex;flex-direction:column">
+
+  <!-- header: kicker + register pill -->
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:56px 64px 0">
+    <span style="display:inline-flex;flex-direction:column;line-height:1.1">
+      <span style="font-family:var(--font-display);font-size:34px;font-weight:500;color:var(--fg)">{{ kicker }}</span>
+      <span dir="ltr" style="font-size:16px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--ub-coral);margin-top:4px">{{ kickerEn }}</span>
+    </span>
+    {{ regPill }}
+  </div>
+
+  <!-- center -->
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:20px 72px;gap:30px">
+    <div style="display:flex;flex-direction:column;gap:12px;align-items:center">
+      <h1 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:118px;line-height:1.04;color:var(--fg)">{{ idiom }}</h1>
+      <span dir="ltr" style="font-family:var(--font-body);font-style:italic;font-size:38px;color:var(--fg-faint)">{{ translit }}</span>
+    </div>
+
+    <div style="width:60%;height:1.5px;background:var(--ub-rule)"></div>
+
+    <div style="display:flex;flex-direction:column;gap:8px;align-items:center;opacity:0.6">
+      <span dir="ltr" style="font-size:15px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--fg-faint)">Literally</span>
+      <span dir="ltr" style="font-family:var(--font-serif);font-style:italic;font-size:40px;color:var(--fg-faint)">{{ literalEn }}</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;align-items:center">
+      <span dir="ltr" style="font-size:15px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--ub-coral)">Really means</span>
+      <span dir="ltr" style="font-family:var(--font-serif);font-style:italic;font-size:52px;font-weight:600;line-height:1.22;color:var(--ub-coral);text-wrap:balance">{{ realEn }}</span>
+    </div>
+  </div>
+
+  <!-- mini example footer -->
+  <div style="margin:0 64px;background:var(--ub-cream-pale);border:1.5px solid var(--ub-rule-soft);border-radius:var(--r-lg);padding:32px 44px;box-shadow:var(--shadow-card);display:flex;flex-direction:column;gap:10px;align-items:center;text-align:center">
+    <span style="font-family:var(--font-display);font-size:40px;font-weight:500;line-height:1.2;color:var(--fg)">{{ exampleHe }}</span>
+    <span dir="ltr" style="font-family:var(--font-serif);font-style:italic;font-size:30px;color:var(--fg-muted)">{{ exampleEn }}</span>
+  </div>
+
+  <!-- footer lockup -->
+  <div style="display:flex;align-items:center;gap:16px;padding:32px 64px 44px">
+    <img src="../../assets/logos/aleph-icon-color.png" alt="" style="width:46px;height:auto" />
+    <span style="font-family:var(--font-display);font-weight:700;font-size:30px;color:var(--fg)">{{ brandHe }}</span>
+    <span dir="ltr" style="margin-right:auto;font-size:19px;color:var(--fg-faint)">{{ handle }}</span>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: { &quot;width&quot;: 1080, &quot;height&quot;: 1080 },
+  &quot;register&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;neutral&quot;,&quot;colloquial&quot;,&quot;slang&quot;,&quot;crude&quot;], &quot;default&quot;: &quot;slang&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;idiom&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;עָשָׂה שְׁכוּנָה&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;translit&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;a·sa shchu·na&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;literalEn&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;\&quot;made a neighborhood\&quot;&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;realEn&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;did a sloppy, half-baked job&quot;, &quot;tsType&quot;: &quot;string&quot; }
+}">
+class Component extends DCLogic {
+  renderVals() {
+    const p = this.props;
+    const REG = {
+      neutral:{c:'#00B0C6',he:'\u05E0\u05B5\u05D9\u05D8\u05B0\u05E8\u05B8\u05DC\u05B4\u05D9',en:'Neutral'},
+      colloquial:{c:'#F4B609',he:'\u05D3\u05B4\u05BC\u05D1\u05BC\u05D5\u05BC\u05E8\u05B4\u05D9',en:'Colloquial'},
+      slang:{c:'#F0586D',he:'\u05E1\u05B0\u05DC\u05B6\u05E0\u05D2',en:'Slang'},
+      crude:{c:'#E36A46',he:'\u05D2\u05B7\u05BC\u05E1',en:'Crude'},
+    };
+    const reg = REG[p.register || 'slang'] || REG.slang;
+    const regPill = React.createElement('span', { style: {
+      display:'inline-flex', alignItems:'center', gap:11, padding:'12px 24px',
+      borderRadius:999, background:reg.c, color:'#fff', boxShadow:'var(--shadow-sm)'
+    } },
+      React.createElement('span', { style:{ fontFamily:'var(--font-display)', fontSize:27, fontWeight:500 } }, reg.he),
+      React.createElement('span', { dir:'ltr', style:{ fontSize:14, fontWeight:700, letterSpacing:'0.16em', textTransform:'uppercase', opacity:0.85 } }, reg.en)
+    );
+    return {
+      regPill,
+      kicker: p.kicker ?? '\u05D1\u05B4\u05D9\u05D8\u05D5\u05BC\u05D9 \u05D4\u05B7\u05D9\u05BC\u05D5\u05B9\u05DD',
+      kickerEn: 'Expression of the day',
+      idiom: p.idiom ?? '\u05E2\u05B8\u05E9\u05B8\u05D4 \u05E9\u05B0\u05DB\u05D5\u05BC\u05E0\u05B8\u05D4',
+      translit: p.translit ?? 'a\u00b7sa shchu\u00b7na',
+      literalEn: p.literalEn ?? '"made a neighborhood"',
+      realEn: p.realEn ?? 'did a sloppy, half-baked job',
+      exampleHe: p.exampleHe ?? '\u05E2\u05B8\u05E9\u05B8\u05D4 \u05E9\u05B0\u05DB\u05D5\u05BC\u05E0\u05B8\u05D4 \u05DE\u05D5\u05BC\u05DC \u05DB\u05B8\u05BC\u05DC \u05D4\u05B7\u05DE\u05B4\u05BC\u05E9\u05B0\u05E8\u05B8\u05D3.',
+      exampleEn: p.exampleEn ?? 'He did a sloppy job in front of the whole office.',
+      brandHe: '\u05DE\u05D2\u05D6\u05D9\u05DF \u05D4\u05D1\u05D9\u05EA', handle: p.handle ?? '@ulpan.magazine',
+    };
+  }
+}
+</script>
+</body>
+</html>

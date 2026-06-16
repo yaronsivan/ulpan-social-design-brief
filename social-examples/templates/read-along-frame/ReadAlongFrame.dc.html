@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Read-Along Video Frame (9:16)" description="News read-along: one RTL Hebrew sentence (niqqud, karaoke hero-word highlight) + English gloss beneath + level-dot badge + brand footer. Modes: read, CTA-full, CTA-cliffhanger." -->
+<helmet>
+  <script src="./ds-base.js"></script>
+</helmet>
+<div style="position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--ub-cream);font-family:var(--font-body);direction:rtl;display:flex;flex-direction:column">
+
+  <!-- top bar: level badge + format label + screen counter -->
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:72px 72px 0">
+    <span style="display:inline-flex;align-items:center;gap:16px">
+      {{ levelDot }}
+      <span style="display:inline-flex;flex-direction:column;line-height:1.12">
+        <span style="font-family:var(--font-display);font-size:30px;font-weight:500;color:var(--fg)">{{ levelHe }}</span>
+        <span dir="ltr" style="font-size:15px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--fg-faint)">Level {{ level }}</span>
+      </span>
+    </span>
+    <span dir="ltr" style="font-size:18px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--ub-coral)">{{ topLabel }}</span>
+  </div>
+
+  <!-- center content -->
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:64px 88px;gap:48px">
+
+    <sc-if value="{{ isRead }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex;flex-direction:column;gap:52px;align-items:center">
+        <h1 style="margin:0;font-family:var(--font-display);font-weight:500;font-size:90px;line-height:1.18;color:var(--fg);text-wrap:balance"><span>{{ hePre }} </span><span style="color:var(--ub-teal-deep);font-weight:700">{{ heHero }}</span><span> {{ hePost }}</span></h1>
+        <p dir="ltr" style="margin:0;font-family:var(--font-serif);font-style:italic;font-size:48px;line-height:1.35;color:var(--fg-muted);text-wrap:pretty">{{ en }}</p>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isCta }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;flex-direction:column;gap:46px;align-items:center">
+        <img src="../../assets/logos/aleph-icon-color.png" alt="" style="width:150px;height:auto" />
+        <h1 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:84px;line-height:1.12;color:var(--fg);text-wrap:balance">{{ ctaHe }}</h1>
+        <p dir="ltr" style="margin:0;font-family:var(--font-serif);font-style:italic;font-size:46px;line-height:1.3;color:var(--fg-muted);text-wrap:pretty">{{ ctaEn }}</p>
+        <span style="display:inline-flex;align-items:center;gap:16px;padding:24px 52px;border-radius:999px;background:var(--ub-coral);color:#fff;font-size:40px;font-weight:700;box-shadow:var(--shadow-md)">{{ ctaButton }}</span>
+      </div>
+    </sc-if>
+  </div>
+
+  <!-- karaoke progress bar -->
+  <div style="margin:0 88px;height:10px;border-radius:999px;background:var(--ub-rule-soft);overflow:hidden">
+    {{ progressBar }}
+  </div>
+
+  <!-- footer lockup -->
+  <div style="display:flex;align-items:center;gap:18px;padding:44px 72px 88px">
+    <img src="../../assets/logos/aleph-icon-color.png" alt="" style="width:54px;height:auto" />
+    <span style="display:inline-flex;flex-direction:column;line-height:1.1">
+      <span style="font-family:var(--font-display);font-weight:700;font-size:36px;color:var(--fg)">{{ brandHe }}</span>
+      <span dir="ltr" style="font-size:20px;color:var(--fg-faint);margin-top:2px">{{ handle }}</span>
+    </span>
+    <span dir="ltr" style="margin-right:auto;display:inline-flex;align-items:center;gap:12px;font-size:22px;color:var(--fg-faint)">{{ screenNo }}</span>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: { &quot;width&quot;: 1080, &quot;height&quot;: 1920 },
+  &quot;mode&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;read&quot;,&quot;cta-full&quot;,&quot;cta-cliff&quot;], &quot;default&quot;: &quot;read&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;level&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;A0&quot;,&quot;A1&quot;,&quot;A2&quot;,&quot;B1&quot;,&quot;B2&quot;,&quot;C1&quot;], &quot;default&quot;: &quot;B1&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;product&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;aktuali&quot;,&quot;magazine&quot;], &quot;default&quot;: &quot;aktuali&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;hePre&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;כִּי הַשּׁוּק&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;heHero&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;קָפוּא.&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;hePost&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;כִּמְעַט אַף אֶחָד לֹא קוֹנֶה.&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;en&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Because the market is frozen. Almost no one is buying.&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;progress&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;56%&quot;, &quot;tsType&quot;: &quot;string&quot; }
+}">
+class Component extends DCLogic {
+  renderVals() {
+    const p = this.props;
+    const mode = p.mode || 'read';
+    const CEFR = { A0:{c:'#1A9461',n:0},A1:{c:'#54A742',n:1},A2:{c:'#9FB52E',n:2},B1:{c:'#FFC60B',n:3},B2:{c:'#F2913B',n:4},C1:{c:'#F0586D',n:5} };
+    const level = p.level || 'B1';
+    const m = CEFR[level] || CEFR.B1;
+    const isCliff = mode === 'cta-cliff';
+    const isCta = mode === 'cta-full' || mode === 'cta-cliff';
+    const product = p.product || 'aktuali';
+    const brand = product === 'magazine'
+      ? { he:'\u05DE\u05D2\u05D6\u05D9\u05DF \u05D4\u05D1\u05D9\u05EA', handle:'@ulpan.magazine' }
+      : { he:'\u05D0\u05E7\u05D8\u05D5\u05D0\u05DC\u05D9', handle:'@aktuali' };
+    const progress = this.props.progress ?? (isCta ? '100%' : '56%');
+    const levelDot = React.createElement('span', { style: {
+      display:'inline-flex', alignItems:'center', justifyContent:'center',
+      width:62, height:62, borderRadius:'50%', background:m.c, color:'#fff',
+      fontWeight:700, fontSize:26
+    } }, level);
+    const progressBar = React.createElement('div', { style: {
+      height:'100%', width:progress, borderRadius:999,
+      background:'linear-gradient(to left, var(--ub-teal), var(--ub-teal-deep))'
+    } });
+    return {
+      isRead: mode === 'read', isCta,
+      level, levelDot, progressBar, levelHe: '\u05E8\u05B8\u05DE\u05B8\u05D4 ' + m.n,
+      topLabel: isCta ? (isCliff ? 'Link in bio' : 'Read-along') : 'Read-along',
+      hePre: p.hePre ?? '\u05DB\u05B4\u05BC\u05D9 \u05D4\u05B7\u05E9\u05BC\u05D5\u05BC\u05E7',
+      heHero: p.heHero ?? '\u05E7\u05B8\u05E4\u05D5\u05BC\u05D0.',
+      hePost: p.hePost ?? '\u05DB\u05B4\u05DE\u05B0\u05E2\u05B7\u05D8 \u05D0\u05B7\u05E3 \u05D0\u05B6\u05D7\u05B8\u05D3 \u05DC\u05B9\u05D0 \u05E7\u05D5\u05B9\u05E0\u05B6\u05D4.',
+      en: p.en ?? 'Because the market is frozen. Almost no one is buying.',
+      ctaHe: p.ctaHe ?? (isCliff ? '\u05E8\u05D5\u05B9\u05E6\u05B4\u05D9\u05DD \u05DC\u05B8\u05D3\u05B7\u05E2\u05B7\u05EA \u05DC\u05B8\u05DE\u05B8\u05BC\u05D4?' : '\u05E8\u05D5\u05B9\u05E6\u05B4\u05D9\u05DD \u05D0\u05B6\u05EA \u05DB\u05B8\u05BC\u05DC \u05D4\u05B7\u05E1\u05B4\u05BC\u05D9\u05E4\u05D5\u05BC\u05E8?'),
+      ctaEn: p.ctaEn ?? (isCliff ? 'Want to know why? Read the full story on Aktuali \u2014 link in bio.' : 'Want the whole story and more words? Link in bio.'),
+      ctaButton: p.ctaButton ?? '\u05E7\u05B4\u05D9\u05E9\u05D5\u05BC\u05E8 \u05D1\u05B7\u05D1\u05B4\u05BC\u05D9\u05D5 \u00b7 Link in bio',
+      progress: p.progress ?? (isCta ? '100%' : '56%'),
+      screenNo: p.screenNo ?? (isCta ? '9 / 9' : '5 / 9'),
+      brandHe: brand.he, handle: p.handle ?? brand.handle,
+    };
+  }
+}
+</script>
+</body>
+</html>

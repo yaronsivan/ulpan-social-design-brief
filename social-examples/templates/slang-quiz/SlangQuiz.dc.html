@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Slang Quiz (4:5)" description="Two-option cliffhanger: a slang idiom + two plausible meanings (A/B), answer withheld to today's magazine. Static, fully automatable; drives to product. Register-pill badge, Magazine footer." -->
+<helmet>
+  <script src="./ds-base.js"></script>
+</helmet>
+<div style="position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--ub-cream);font-family:var(--font-body);direction:rtl;display:flex;flex-direction:column">
+
+  <!-- top accent rule -->
+  <div style="height:14px;background:linear-gradient(to left, var(--ub-teal) 0 33.3%, var(--ub-gold) 33.3% 66.6%, var(--ub-coral) 66.6% 100%)"></div>
+
+  <!-- header: kicker + register pill -->
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:52px 64px 0">
+    <span style="display:inline-flex;flex-direction:column;line-height:1.1">
+      <span style="font-family:var(--font-display);font-size:34px;font-weight:500;color:var(--fg)">{{ kicker }}</span>
+      <span dir="ltr" style="font-size:16px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--ub-coral);margin-top:4px">{{ kickerEn }}</span>
+    </span>
+    {{ regPill }}
+  </div>
+
+  <!-- center: idiom + question + two options -->
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:28px 80px;gap:30px">
+    <div style="display:flex;flex-direction:column;gap:10px;align-items:center">
+      <h1 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:96px;line-height:1.04;color:var(--fg)">{{ idiom }}</h1>
+      <span dir="ltr" style="font-family:var(--font-body);font-style:italic;font-size:34px;color:var(--fg-faint)">{{ idiomTranslit }}</span>
+    </div>
+    <span dir="ltr" style="font-size:20px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--ub-coral)">{{ question }}</span>
+    <div style="display:flex;flex-direction:column;gap:20px;width:100%">
+      {{ optionA }}
+      {{ optionB }}
+    </div>
+  </div>
+
+  <!-- cliffhanger CTA strip -->
+  <div style="margin:0 64px 28px;background:var(--ub-teal-deep);border-radius:var(--r-lg);padding:28px 40px;display:flex;flex-direction:column;gap:6px;align-items:center;text-align:center">
+    <span style="font-family:var(--font-display);font-size:38px;font-weight:700;color:var(--ub-cream-pale)">{{ ctaHe }}</span>
+    <span dir="ltr" style="font-family:var(--font-serif);font-style:italic;font-size:28px;color:rgba(255,253,250,0.85)">{{ ctaEn }}</span>
+  </div>
+
+  <!-- footer lockup (product-brand; aleph mark, no school tagline) -->
+  <div style="display:flex;align-items:center;gap:16px;padding:0 64px 44px">
+    <img src="../../assets/logos/aleph-icon-color.png" alt="" style="width:46px;height:auto" />
+    <span style="font-family:var(--font-display);font-weight:700;font-size:30px;color:var(--fg)">{{ brandHe }}</span>
+    <span dir="ltr" style="margin-right:auto;font-size:19px;color:var(--fg-faint)">{{ handle }}</span>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: { &quot;width&quot;: 1080, &quot;height&quot;: 1350 },
+  &quot;register&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;neutral&quot;,&quot;colloquial&quot;,&quot;slang&quot;,&quot;crude&quot;], &quot;default&quot;: &quot;slang&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;idiom&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;\u05D3\u05B8\u05BC\u05D7\u05B7\u05E3 \u05D0\u05B6\u05EA \u05D4\u05B8\u05D0\u05B7\u05E3&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;idiomTranslit&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;da·chaf et ha·af&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;optionAEn&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;\&quot;pushed his nose in\&quot;&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;optionBEn&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;butted in / stuck his nose in uninvited&quot;, &quot;tsType&quot;: &quot;string&quot; }
+}">
+class Component extends DCLogic {
+  renderVals() {
+    const p = this.props;
+    const REG = {
+      neutral:{c:'#00B0C6',he:'\u05E0\u05B5\u05D9\u05D8\u05B0\u05E8\u05B8\u05DC\u05B4\u05D9',en:'Neutral'},
+      colloquial:{c:'#F4B609',he:'\u05D3\u05B4\u05BC\u05D1\u05BC\u05D5\u05BC\u05E8\u05B4\u05D9',en:'Colloquial'},
+      slang:{c:'#F0586D',he:'\u05E1\u05B0\u05DC\u05B6\u05E0\u05D2',en:'Slang'},
+      crude:{c:'#E36A46',he:'\u05D2\u05B7\u05BC\u05E1',en:'Crude'},
+    };
+    const reg = REG[p.register || 'slang'] || REG.slang;
+    const regPill = React.createElement('span', { style: {
+      display:'inline-flex', alignItems:'center', gap:11, padding:'12px 24px',
+      borderRadius:999, background:reg.c, color:'#fff', boxShadow:'var(--shadow-sm)'
+    } },
+      React.createElement('span', { style:{ fontFamily:'var(--font-display)', fontSize:27, fontWeight:500 } }, reg.he),
+      React.createElement('span', { dir:'ltr', style:{ fontSize:14, fontWeight:700, letterSpacing:'0.16em', textTransform:'uppercase', opacity:0.85 } }, reg.en)
+    );
+    const optionCard = (letter, color, text) => React.createElement('div', { style: {
+      display:'flex', alignItems:'center', gap:24, width:'100%', background:'var(--ub-cream-pale)',
+      border:'1.5px solid var(--ub-rule-soft)', borderRadius:'var(--r-lg)', padding:'30px 36px', boxShadow:'var(--shadow-card)'
+    } },
+      React.createElement('span', { style:{ flex:'none', display:'inline-flex', alignItems:'center', justifyContent:'center',
+        width:64, height:64, borderRadius:'50%', background:color, color:'#fff', fontWeight:700, fontSize:30 } }, letter),
+      React.createElement('span', { dir:'ltr', style:{ fontFamily:'var(--font-serif)', fontStyle:'italic', fontSize:40, lineHeight:1.25, color:'var(--fg)', textAlign:'left' } }, text)
+    );
+    return {
+      regPill,
+      kicker: p.kicker ?? (reg.he + ' — חידון'),   // "<register> — חידון"
+      kickerEn: 'Slang quiz',
+      idiom: p.idiom ?? '\u05D3\u05B8\u05BC\u05D7\u05B7\u05E3 \u05D0\u05B6\u05EA \u05D4\u05B8\u05D0\u05B7\u05E3',
+      idiomTranslit: p.idiomTranslit ?? 'da·chaf et ha·af',
+      question: p.question ?? 'What does it really mean?',
+      optionA: optionCard('A', '#00B0C6', p.optionAEn ?? '"pushed his nose in"'),
+      optionB: optionCard('B', '#F4B609', p.optionBEn ?? 'butted in / stuck his nose in uninvited'),
+      ctaHe: p.ctaHe ?? '👀 התשובה בגיליון של היום',
+      ctaEn: p.ctaEn ?? "The answer's in today's magazine — link in bio",
+      brandHe: 'מגזין הבית', handle: p.handle ?? '@ulpan.magazine',
+    };
+  }
+}
+</script>
+</body>
+</html>
